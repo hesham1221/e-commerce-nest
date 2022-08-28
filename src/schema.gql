@@ -1,0 +1,129 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  Products: [Product!]
+  categoryName: String!
+  id: Int!
+}
+
+input CreateProductInput {
+  categoryId: Int!
+  desc: String!
+  name: String!
+  price: Int!
+  quantity: Int!
+}
+
+input CreateUserInput {
+  email: String!
+  firstname: String!
+  lastname: String!
+  password: String!
+  phoneNumber: String
+  role: String
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  addAddress(UserAddressInput: addAddressInput!): UserAddress!
+  addProduct(createProductInput: CreateProductInput!): Product!
+  createACategory(categoryName: String!): Category!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeProduct(id: Int!): Product!
+  removeUser(oldPassword: String!): removeUser!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Product {
+  desc: String!
+  id: Int!
+  name: String!
+  price: Int!
+  quantity: Int!
+}
+
+type Query {
+  login(loginInput: loginInput!): loginOutput!
+  product(id: Int!): Product!
+}
+
+input UpdateProductInput {
+  categoryId: Int
+  desc: String
+  id: Int!
+  name: String
+  price: Int
+  quantity: Int
+}
+
+input UpdateUserInput {
+  email: String
+  firstname: String
+  lastname: String
+  oldPassword: String!
+  password: String
+  phoneNumber: String
+  role: String
+  username: String
+}
+
+type User {
+  email: String!
+  firstname: String!
+  id: Int!
+  lastname: String!
+  phoneNumber: String
+  products: [Product!]
+  role: String!
+  userAddress: UserAddress!
+  userPayments: [UserPayments!]!
+  username: String!
+  verifyed: Boolean!
+}
+
+type UserAddress {
+  addressLine1: String!
+  addressLine2: String
+  city: String!
+  country: String!
+  id: Int!
+  postcode: String!
+}
+
+type UserPayments {
+  accountNumber: Int!
+  expiry: DateTime!
+  id: Int!
+  paymentType: String!
+  povider: String!
+}
+
+input addAddressInput {
+  addressLine1: String!
+  addressLine2: String
+  city: String!
+  country: String!
+  postcode: String!
+}
+
+input loginInput {
+  email: String!
+  password: String!
+}
+
+type loginOutput {
+  message: String!
+  token: String!
+}
+
+type removeUser {
+  message: String!
+}
